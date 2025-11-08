@@ -1,0 +1,11 @@
+A
+BB
+Line with leading and trailing spaces     
+Normal                                              line        but             
+then this one     is extremely longggggg        and should
+breakattheright place between words not   in the middle of any word
+vvvpovovoovovoovovovoooooooovovoovovvv    vvvoooovvvoooeo       ovoovovoov      
+egkfmkegellelellel     elelellelelvellelel  ellele l   lelelle          elel 
+ellel        elele
+lekgkelgme    kekekkekk   eklmgemgek  elkgmeklgmemg ke kgegek k
+mekmgemkkemmekmkkm ekmek      ekgekgkegme       ekgmkemgkm   ekgmek gekm

@@ -9,4 +9,4 @@ typedef enum {
     SAME
 } return_code;
 
-#endif 
+#endif

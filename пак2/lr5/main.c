@@ -34,52 +34,28 @@ void justify_and_print(char **words, int count, FILE *out) {
 }
 
 void format_line(const char *src, FILE *out) {
-    char word[BUFFER];
-    int word_len;
-    char *ptr = (char*)src;
-
-    char *line_words[BUFFER];
-    int line_count = 0;
-    int line_len = 0;
+    const char *ptr = src;
+    while (*ptr && isspace((unsigned char)*ptr)) ptr++; // убираем ведущие пробелы
 
     while (*ptr) {
+        int remaining = strlen(ptr);
+        int line_len = remaining >= MAX_LINE ? MAX_LINE : remaining;
+
+        int split = line_len;
+        while (split > 0 && !isspace((unsigned char)ptr[split]) && line_len == MAX_LINE) split--;
+
+        if (split == 0 && line_len == MAX_LINE) split = MAX_LINE; // нет пробела — делим ровно 80
+
+        fwrite(ptr, 1, split, out);
+        fputc('\n', out);
+
+        ptr += split;
+
+
         while (*ptr && isspace((unsigned char)*ptr)) ptr++;
-        if (!*ptr) break;
-
-        word_len = 0;
-        while (*ptr && !isspace((unsigned char)*ptr)) {
-            word[word_len++] = *ptr++;
-        }
-        word[word_len] = '\0';
-        int wlen = strlen(word);
-
-        if (line_len + (line_count > 0 ? 1 : 0) + wlen > MAX_LINE) {
-            if (line_count > 0) {
-                justify_and_print(line_words, line_count, out);
-                for (int i = 0; i < line_count; i++) free(line_words[i]);
-                line_count = 0;
-                line_len = 0;
-            }
-            while (wlen > MAX_LINE) {
-                fwrite(word, 1, MAX_LINE, out);
-                fputc('\n', out);
-                memmove(word, word + MAX_LINE, wlen - MAX_LINE);
-                wlen -= MAX_LINE;
-                word[wlen] = '\0';
-            }
-        }
-
-        line_words[line_count] = malloc(strlen(word) + 1);
-        strcpy(line_words[line_count], word);
-        line_count++;
-        line_len += wlen + (line_count > 1 ? 1 : 0);
-    }
-
-    if (line_count > 0) {
-        justify_and_print(line_words, line_count, out);
-        for (int i = 0; i < line_count; i++) free(line_words[i]);
     }
 }
+
 
 return_code mydef(const char *input, const char *output) {
     FILE *in = fopen(input, "r");
