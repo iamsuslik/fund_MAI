@@ -20,9 +20,9 @@ void demo_roman_interactive(void) {
         int result = oversscanf(input, "%Ro", &value);
         
         if (result == 1) {
-            printf("✓ Преобразование успешно: %s = %d\n", input, value);
+            printf("Преобразование успешно: %s = %d\n", input, value);
         } else {
-            printf("✗ Ошибка: неверный формат римского числа\n");
+            printf("Ошибка: неверный формат римского числа\n");
             printf("Код ошибки: %d\n", result);
         }
     }
@@ -40,9 +40,9 @@ void demo_zekendorf_interactive(void) {
         int result = oversscanf(input, "%Zr", &value);
         
         if (result == 1) {
-            printf("✓ Преобразование успешно: %s = %u\n", input, value);
+            printf("Преобразование успешно: %s = %u\n", input, value);
         } else {
-            printf("✗ Ошибка: неверный формат цекендорфова представления\n");
+            printf("Ошибка: неверный формат цекендорфова представления\n");
             printf("Код ошибки: %d\n", result);
             if (result == OVERSCANF_TOO_LONG) {
                 printf("(Слишком длинная последовательность)\n");
@@ -85,9 +85,9 @@ void demo_custom_base_interactive(void) {
         }
         
         if (result == 1) {
-            printf("✓ Преобразование успешно: %s (base %d) = %d\n", input, base, value);
+            printf("Преобразование успешно: %s (base %d) = %d\n", input, base, value);
         } else {
-            printf("✗ Ошибка преобразования\n");
+            printf("Ошибка преобразования\n");
             printf("Код ошибки: %d\n", result);
         }
     }
@@ -112,7 +112,7 @@ void demo_mixed_interactive(void) {
         printf("Результат oversscanf = %d\n", result);
         
         if (result == 3) {
-            printf("✓ Преобразование успешно:\n");
+            printf("Преобразование успешно:\n");
             printf("  Римские: %d\n", roman_val);
             printf("  Цекендорф: %u\n", zek_val);
             printf("  Шестнадцатеричные: %d\n", hex_val);
@@ -178,7 +178,7 @@ void demo_file_operations(void) {
             int result = oversscanf(line, "%Ro %Zr %CV %d", &roman_val, &zek_val, &hex_val, 16, &dec_val);
             
             if (result == 4) {
-                printf("  ✓ УСПЕХ:\n");
+                printf("  УСПЕХ:\n");
                 printf("    Римские: %d\n", roman_val);
                 printf("    Цекендорф: %u\n", zek_val);
                 printf("    Шестнадцатеричные: %d\n", hex_val);
